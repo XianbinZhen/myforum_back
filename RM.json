@@ -1,0 +1,45 @@
+// user
+{
+	"userID": 1,
+	"username": "user1",
+	"password": "pass",
+	"profileIMG": "url",
+	"createdAt": "2021-8-3",
+}
+
+// thread
+{
+	"threadID": 1,
+	"userID": 1,
+	"title": "title1",
+	"content": "content",
+	"likes": 0,
+	"createdAt": "2021-8-3"
+}
+
+// comment
+{
+	"commentID": 1,
+	"threadID": 1,
+	"userID": 1,
+	"createdAt": "2021-8-3",
+	"likes": 0
+}
+
+// user - thread (one to many)
+{
+	"userID": 1,
+	"threadID": 1
+}
+
+// user - comment (one to many)
+{
+	"userID": 1,
+	"commentID": 1
+}
+
+// thread - comment (one to many)
+{
+	"threadID": 1,
+	"commentID": 1	
+}
