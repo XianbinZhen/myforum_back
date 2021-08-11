@@ -3,11 +3,9 @@ package com.zhen.myForum.controller;
 import com.zhen.myForum.entity.User;
 import com.zhen.myForum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +26,13 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int userId) {
+        try {
+            User user1 = userService.updateUser(userId, user);
+            return ResponseEntity.status(200).body(user1);
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.status(404).body(new User());
+        }
+    }
 }
