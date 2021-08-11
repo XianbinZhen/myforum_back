@@ -35,4 +35,14 @@ public class UserService {
         return userRepo.save(user);
     }
 
+    public User deleteUser(int userId) {
+        Optional<User> optionalUser = userRepo.findById(userId);
+        if(optionalUser.isEmpty()){
+            throw new IllegalArgumentException("User not found");
+        }
+        User user = optionalUser.get();
+        userRepo.delete(user);
+        return user;
+    }
+
 }

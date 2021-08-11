@@ -32,7 +32,17 @@ public class UserController {
             User user1 = userService.updateUser(userId, user);
             return ResponseEntity.status(200).body(user1);
         } catch (IllegalArgumentException exception) {
-            return ResponseEntity.status(404).body(new User());
+            return ResponseEntity.status(404).body(new User(404, "Not Found", null, null, 0));
+        }
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<User> deleteUser(@PathVariable int userId) {
+        try {
+            User user = userService.deleteUser(userId);
+            return ResponseEntity.status(200).body(user);
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.status(404).body(new User(404, "Not Found", null, null, 0));
         }
     }
 }
